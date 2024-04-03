@@ -25,7 +25,7 @@ const createOrganisation = (creds) => {
 
 const signup = async (req, res) => {
   const { email, password, username, organisationName } = req.body;
-  const query = `SELECT EXISTS(SELECT 1 FROM clients WHERE email = '${email}') AS userExists`;
+  const query = `SELECT EXISTS(SELECT 1 FROM myTable WHERE email = '${email}') AS userExists`;
 
   pool.query(query, (err, rows, fields) => {
     if (rows && rows[0].userExists) {
@@ -33,7 +33,7 @@ const signup = async (req, res) => {
     } else {
       createOrganisation({ email, password, username, organisationName });
       createDatabaseAndTableIfNotExists(email.split("@")[0]);
-      const query = `INSERT INTO clients (username,email, password,organisationName) VALUES (?,?,?,?)`;
+      const query = `INSERT INTO myTable (username,email, password,organisationName) VALUES (?,?,?,?)`;
       pool.query(
         query,
         [email, password, username, organisationName],
