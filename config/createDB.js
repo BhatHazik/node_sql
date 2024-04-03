@@ -2,9 +2,9 @@ const mysql = require("mysql2/promise");
 
 async function createDatabaseAndTableIfNotExists(databaseName) {
   const pool = mysql.createPool({
-    host: process.env.HOST,
-    user: process.env.DB_USER,
-    password: process.env.PASSWORD,
+    host: "localhost",
+    user: "root",
+    password: "root",
     database: null,
   });
 
@@ -24,7 +24,7 @@ async function createDatabaseAndTableIfNotExists(databaseName) {
     const db = await mysql.createConnection({
       host: "localhost",
       user: "root",
-      password: "helloworld",
+      password: "root",
       database: databaseName,
     });
 

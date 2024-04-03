@@ -12,13 +12,13 @@ const sendResponse = (res, status, message, rows = null) => {
 const createOrganisation = (creds) => {
   const { email, password, username, organisationName } = creds;
   console.log(username, email, password, organisationName);
-  const query = `INSERT INTO clients (username,email, password,organisationName) VALUES (?,?,?,?)`;
+  const query = `INSERT INTO myTable (username,email, password,organisationName) VALUES (?,?,?,?)`;
   pool.query(
     query,
     [username, email, password, organisationName],
     (err, rows, fields) => {
       if (err) console.log(err);
-      console.log("Mater DB ORG updated!");
+      console.log("Master DB ORG updated!");
     }
   );
 };
